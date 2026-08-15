@@ -1,0 +1,9 @@
+# Environment variables for self-hosted n8n
+.env
+
+# Backups directory
+backups/
+
+# System and editor files
+.DS_Store
+*.log
