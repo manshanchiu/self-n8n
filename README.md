@@ -84,6 +84,24 @@ Internet (Users / Webhooks)
    - **TTL**: `300` (5 minutes)
 4. Click **Create records**.
 
+#### (Optional) Step 3.1: Free Domain Email Forwarding (ImprovMX)
+If you want emails sent to `admin@yourdomain.com` (or `*@yourdomain.com`) to forward directly to your personal Gmail for free:
+1. Go to [ImprovMX](https://improvmx.com), enter your domain (`yourdomain.com`) and your personal Gmail address.
+2. In your **AWS Route 53 Hosted Zone**, add the following records:
+   - **MX Record**:
+     - *Record name*: (leave blank / root)
+     - *Type*: `MX`
+     - *Value*:
+       ```
+       10 mx1.improvmx.com.
+       20 mx2.improvmx.com.
+       ```
+   - **TXT (SPF) Record**:
+     - *Record name*: (leave blank / root)
+     - *Type*: `TXT`
+     - *Value*: `"v=spf1 include:spf.improvmx.com ~all"`
+3. Verify on the ImprovMX dashboard until the status turns green (**"Email forwarding active"**).
+
 ---
 
 ### Step 4: Connect to VM & Run Setup
