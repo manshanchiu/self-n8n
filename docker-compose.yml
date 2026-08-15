@@ -8,6 +8,16 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
       PGDATA: /var/lib/postgresql/data/pgdata
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_buffers=64MB"
+      - "-c"
+      - "work_mem=4MB"
+      - "-c"
+      - "maintenance_work_mem=16MB"
+      - "-c"
+      - "max_connections=30"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -29,6 +39,7 @@ services:
       - DB_POSTGRESDB_DATABASE=${POSTGRES_DB}
       - DB_POSTGRESDB_USER=${POSTGRES_USER}
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+      - DB_POSTGRESDB_POOL_SIZE=5
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE:-UTC}
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
@@ -37,6 +48,11 @@ services:
       - N8N_WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - N8N_METRICS=${N8N_METRICS:-false}
       - N8N_DIAGNOSTICS_ENABLED=${N8N_DIAGNOSTICS_ENABLED:-false}
+      # Low-memory & performance optimizations
+      - NODE_OPTIONS=--max-old-space-size=450
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=72
+      - EXECUTIONS_DATA_PRUNE_MAX_COUNT=5000
     depends_on:
       postgres:
         condition: service_healthy
