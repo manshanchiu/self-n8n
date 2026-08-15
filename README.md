@@ -88,13 +88,17 @@ Internet (Users / Webhooks)
 
 ### Step 4: Connect to VM & Run Setup
 
-1. In Google Cloud Console, click **SSH** next to your `n8n-server` VM.
-2. Clone this repository onto the VM:
+1. In Google Cloud Console, click the **SSH** button next to your `n8n-server` VM.
+2. (If git is not installed) Install git:
    ```bash
-   git clone https://github.com/your-username/self-n8n.git
+   sudo apt update && sudo apt install -y git
+   ```
+3. Clone this repository onto the VM:
+   ```bash
+   git clone https://github.com/manshanchiu/self-n8n.git
    cd self-n8n
    ```
-3. Run the automated VM setup script (Installs Docker, Docker Compose plugin, and sets up 2GB swap space):
+4. Run the automated VM setup script (installs Docker, Docker Compose plugin, and sets up 2GB swap space):
    ```bash
    sudo ./scripts/setup-vm.sh
    ```
@@ -111,12 +115,18 @@ Internet (Users / Webhooks)
    ```bash
    openssl rand -hex 32
    ```
-3. Open `.env` in a text editor (e.g. `nano .env`) and fill in:
+3. Open `.env` in a text editor:
+   ```bash
+   nano .env
+   ```
+   Fill in your configuration:
    - `DOMAIN_NAME`: Your root domain (e.g. `yourdomain.com`)
    - `SUBDOMAIN`: Your subdomain (e.g. `n8n`)
-   - `SSL_EMAIL`: Your email for Let's Encrypt certificate notifications
-   - `POSTGRES_PASSWORD`: A secure password for the database
-   - `N8N_ENCRYPTION_KEY`: The key generated from step 2 above.
+   - `SSL_EMAIL`: Your email (used for Let's Encrypt certificate notifications)
+   - `POSTGRES_PASSWORD`: Choose a secure password for PostgreSQL
+   - `N8N_ENCRYPTION_KEY`: Paste the 32-byte hex key generated from step 2
+
+   *(Press `Ctrl + O` then `Enter` to save in nano, and `Ctrl + X` to exit).*
 
 ---
 
