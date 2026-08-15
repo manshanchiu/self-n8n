@@ -19,7 +19,7 @@ fi
 # 2. Update and install base prerequisites
 echo "[+] Updating apt repositories..."
 apt-get update -y
-apt-get install -y ca-certificates curl gnupg lsb-release ufw openssl
+apt-get install -y ca-certificates curl gnupg lsb-release ufw openssl git nano vim
 
 # 3. Configure 2GB Swap file (Critical for e2-micro/e2-small stability)
 if [ ! -f /swapfile ]; then
