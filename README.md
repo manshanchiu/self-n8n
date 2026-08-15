@@ -40,11 +40,11 @@ Internet (Users / Webhooks)
 | Component | Configuration | Monthly Cost | Note |
 | :--- | :--- | :--- | :--- |
 | **Compute VM** | `e2-micro` (2 vCPU, 1 GB RAM) | **$0.00** | Covered by GCP Always Free Tier (us-central1, us-east1, us-west1) |
-| **Boot Disk** | 30 GB Standard Persistent Disk | **$0.00** | Covered by GCP Always Free Tier |
+| **Boot Disk (SSD)** | 30 GB Balanced Persistent Disk (SSD) | **~$3.00** | Highly recommended for fast DB & swap performance |
 | **Static External IPv4** | 1 Reserved Static IP | **~$3.65** | Fully covered by your $10/mo credit |
 | **Egress / Webhooks** | Outbound network traffic | **~$0.10 - $0.50** | Fully covered by your $10/mo credit |
 | **SSL / HTTPS (Caddy)** | In-container reverse proxy | **$0.00** | Open source / automated |
-| **Total Out-of-Pocket** | | **$0.00 / month** | **100% Free** (You keep ~$5.85 credit spare) |
+| **Total Out-of-Pocket** | | **$0.00 / month** | **100% Free** (You keep ~$3.35 credit spare) |
 
 ---
 
@@ -57,8 +57,9 @@ Internet (Users / Webhooks)
    - **Name**: `n8n-server`
    - **Region**: `us-central1` (Iowa), `us-east1` (S. Carolina), or `us-west1` (Oregon) *(Required for Free Tier)*
    - **Machine Configuration**: `E2` series -> `e2-micro` (2 vCPU, 1 GB RAM).
-   - **Boot Disk**: Click *Change* -> OS: **Ubuntu** (Version: Ubuntu 24.04 LTS or 22.04 LTS) -> **Boot disk type**: **Standard persistent disk** -> Size: **30 GB** (100% Free Tier).
+   - **Boot Disk**: Click *Change* -> OS: **Ubuntu** (Version: Ubuntu 24.04 LTS) -> **Boot disk type**: **Balanced persistent disk** (SSD) -> Size: **30 GB**.
    - **Firewall**: Check both **"Allow HTTP traffic"** and **"Allow HTTPS traffic"**.
+   - **Custom metadata**: Add item `enable-oslogin` = `FALSE` (grants seamless passwordless sudo).
 3. Click **Create**.
 
 ---
