@@ -34,7 +34,7 @@ services:
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      - N8N_WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - N8N_METRICS=${N8N_METRICS:-false}
       - N8N_DIAGNOSTICS_ENABLED=${N8N_DIAGNOSTICS_ENABLED:-false}
     depends_on:
