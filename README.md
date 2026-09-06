@@ -130,8 +130,9 @@ If you want emails sent to `admin@yourdomain.com` (or `*@yourdomain.com`) to for
    ```bash
    cp .env.example .env
    ```
-2. Generate a random 32-byte encryption key:
+2. Generate random 32-byte hex keys for encryption, runners, and sandbox services:
    ```bash
+   # Run openssl to generate keys:
    openssl rand -hex 32
    ```
 3. Open `.env` in a text editor:
@@ -143,7 +144,12 @@ If you want emails sent to `admin@yourdomain.com` (or `*@yourdomain.com`) to for
    - `SUBDOMAIN`: Your subdomain (e.g. `n8n`)
    - `SSL_EMAIL`: Your email (used for Let's Encrypt certificate notifications)
    - `POSTGRES_PASSWORD`: Choose a secure password for PostgreSQL
-   - `N8N_ENCRYPTION_KEY`: Paste the 32-byte hex key generated from step 2
+   - `N8N_ENCRYPTION_KEY`: 32-byte hex key for credential encryption
+   - `N8N_RUNNERS_AUTH_TOKEN`: 32-byte hex key for isolated task runners
+   - `SANDBOX_API_KEY`: 32-byte hex key for AI sandbox API
+   - `SANDBOX_REGISTRATION_TOKEN`: 32-byte hex key for sandbox runner registration
+   - `SANDBOX_RUNNER_API_KEY`: 32-byte hex key for sandbox runner
+   - `SEARXNG_SECRET`: 32-byte hex key for SearXNG web search
 
    *(Press `Ctrl + O` then `Enter` to save in nano, and `Ctrl + X` to exit).*
 
